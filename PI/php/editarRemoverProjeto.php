@@ -32,8 +32,8 @@ if (isset($_POST['edita'])) {
             $ativo = 'N';
     }
 
-    $stmt = $bd -> prepare("UPDATE projeto SET nomeProjeto = '$nome', dataPostagem = '$data', ativo = '$ativo', imagens = '$arquivoEnviado', descricao = '$desc'
-        WHERE IdProjeto = '1'
+    $stmt = $bd -> prepare("UPDATE projeto_LL SET nomeProjeto = '$nome', dataPostagem = '$data', ativo = '$ativo', imagens = '$arquivoEnviado', descricao = '$desc'
+        WHERE IdProjeto = '7'
     ");
 
     if ($stmt -> execute());
@@ -42,7 +42,7 @@ if (isset($_POST['edita'])) {
 }
 else {
     if (isset($_POST['deleta'])) {
-        $stmt = $bd -> prepare("DELETE FROM projeto WHERE IdProjeto = '1'");
+        $stmt = $bd -> prepare("DELETE FROM projeto_LL WHERE IdProjeto = '7'");
        if ( $stmt -> execute()) {
         echo 'deletado!'; 
        }

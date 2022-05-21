@@ -3,8 +3,15 @@
 session_start();
 require_once '../config/conexao.php';
 
+
+$nm = $_SESSION['id'];
 $codigo = $_POST['cod'];
-$stmt = $bd -> query("SELECT nomeProjeto, imagens, dataPostagem FROM projeto WHERE IdProjeto = '$codigo'");
+var_dump($codigo);
+//$stmt = $bd -> query("SELECT nomeProjeto, imagens, dataPostagem FROM projeto_LL WHERE IdProjeto = '$codigo'");
+$stmt = $bd -> query(
+    "SELECT nomeProjeto, imagens, dataPostagem FROM projeto_LL INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
+    WHERE IdProjeto = $codigo AND nomeUsuario = '$nm'");
+
 $stmt -> execute();
 $val = $stmt -> fetch(PDO::FETCH_ASSOC);
 

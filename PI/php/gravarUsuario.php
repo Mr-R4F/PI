@@ -8,7 +8,7 @@ $senha = $_POST['senha'];
 $confimaSenha = $_POST['confirmaSenha'];
 
 if ($senha === $confimaSenha) {
-    $stmt = $bd -> query("SELECT email FROM usuario WHERE email = '$email'" );
+    $stmt = $bd -> query("SELECT email FROM usuario_LL WHERE email = '$email'" );
     $stmt -> execute([$email]);
     $user = $stmt -> fetchAll();
     
@@ -22,7 +22,7 @@ if ($senha === $confimaSenha) {
     }
     else {
         $senha = password_hash($senha, PASSWORD_DEFAULT);
-        $stmt = $bd -> prepare('INSERT INTO usuario (nomeUsuario, email, senha) VALUES (:nomeUsuario, :email, :senha)');
+        $stmt = $bd -> prepare('INSERT INTO usuario_LL (nomeUsuario, email, senha) VALUES (:nomeUsuario, :email, :senha)');
 
         $stmt -> bindParam(':nomeUsuario', $nome);
         $stmt -> bindParam(':email', $email);

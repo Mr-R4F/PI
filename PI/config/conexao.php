@@ -1,3 +1,3 @@
 <?php
 
-$bd = new PDO('sqlsrv:Database=trab;Server=localhost\SQLEXPRESS', 'sa', 'SqlExp22');
+$bd = new PDO('sqlsrv:Database=onu;Server=10.135.0.53\\sqledutsi', 'ALUNO', 'aluno');
