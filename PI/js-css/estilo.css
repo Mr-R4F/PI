@@ -1,0 +1,26 @@
+
+button.btn {
+    margin-left: 26%;
+    margin-right: 30%;
+}
+
+input:nth-child(n + 1) {
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+}
+
+input:nth-child(n + 1):focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.form-label {
+    color: gray;
+}
+
+a:nth-child(n + 1) {
+    text-decoration: none;
+    color: black;
+}
