@@ -25,4 +25,8 @@ CREATE TABLE categoria_CC (
 	ativo char(1)
 )
 
+SELECT * FROM usuario_UU
+SELECT * FROM projeto_PP
+SELECT * FROM categoria_CC
+
 INSERT INTO categoria_CC (nomeCategoria,ativo)  VALUES ('Programacao', 'S')
