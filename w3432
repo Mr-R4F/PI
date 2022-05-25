@@ -1,0 +1,12 @@
+a trigger é disparada quando ocorre algo numa tabela
+é possivel ter stored procedures e function na trigger
+dentro da store é possivel ter uma function
+
+string  é preenche c/ varchar(
+loop
+pega vários selects
+trigger tbm 1 trg vai pra tb 2 que possui trg2 que vai p/ tb 3 que pode ter outras trgs
+uma trigger mal construido pode trazer problemas (vai disparando gatilhos entre tabelas, sendo necessária analisar)
+ajuda p/ o prox PI (trigger) *****
+Usar stored procedured no PI (proximo) *******
+begin transaction -- vai voltando as coisas ....(para que não tenha conflitos em caso de porudtos0
