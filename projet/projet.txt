@@ -1,0 +1,4 @@
+IdCategoria,nomeCategoria,ativo
+1,Imagem ,S
+2,Prototipos,S
+3,Projetos,S
