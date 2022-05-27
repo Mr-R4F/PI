@@ -76,14 +76,10 @@
                                                     <input type="text" class="form-control" id="autor" name="autor" value="<?php echo ucfirst($_SESSION['nm']); ?>" disabled>
 
                                                     <label for="categoria" class="form-label mt-4">Categoria</label>
-                                                    <select class="form-select" id="categoria" name="categoria">
-                                                        <option>Programação</option>
-                                                        <option>Jogos</option>
-                                                        <option>Livros</option>
-                                                        <option>3D</option>
-                                                        <option>Pinturas digitais</option>
-                                                        <option>Pinturas</option>
-                                                        <option>Imagens</option>
+                                                    <select class="form-select" id="categoria" name="categoria" disabled>
+                                                        <?php echo $img ?>
+                                                        <?php echo $prot ?>
+                                                        <?php echo $proj ?>
                                                     </select>
 
                                                     <div class="row">

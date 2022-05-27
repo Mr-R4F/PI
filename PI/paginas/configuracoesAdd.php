@@ -67,7 +67,7 @@
                                                 <input type="text" class="form-control" id="nome" name="nome" autocomplete="off">
 
                                                 <label for="autor" class="form-label mt-4">Autor</label>
-                                                <input type="text" class="form-control" id="autor" name="autor" value="<?php echo $_SESSION['nm']; ?>" disabled>
+                                                <input type="text" class="form-control" id="autor" name="autor" value="<?php echo ucfirst($_SESSION['nm']); ?>" disabled>
 
                                                 <label for="categoria" class="form-label mt-4">Categoria</label>
                                                 <select class="form-select" id="categoria" name="categoria">
