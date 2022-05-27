@@ -1,0 +1,13 @@
+IdCategoria,IdUsuario,IdProjeto,nomeProjeto,imagens,dataPostagem,descricao,ativo
+1,1,1,projeto,../imagens/images.jpg_43a1a04bbb88ec3f0f28cc4b13dd0b00.jpeg,2020-05-27,ewtrwe4rtwrwe4,S
+1,1,2,bonito,../imagens/images.jpg_69198c31ada8c2c6baaeb18a379c4196.jpeg,2222-02-22,qw3r4we3rew,S
+1,1,3,mais um,,0222-02-22,sem iamgem hahaha,S
+1,2,4,trabalho do paulinho de JS,../imagens/download.png_add842a210b3e9a56fe14f1d84bf6c02.png,2222-02-22,sdefsfdfsd,S
+1,2,5,foto bonitinha,../imagens/download.jpg_30dc44be580872c958e479985609df64.jpeg,,eswitgjesoioeseoie rewqrjkoqewaorwqerqw,S
+1,2,6,Casa,../imagens/download.jpg_2e9f80f6c20e0fcb41210ea62d00a7bc.jpeg,,um trabalho sobre casas,S
+1,3,7,joaozinho,,2202-05-27,trabalhinho,S
+1,3,8,mangas,../imagens/download.jpg_19cb894a96758dcc15a8348925596d7b.jpeg,2022-05-27,mangas,S
+1,3,9,jgjsaga,,2018-02-22,fafafas,S
+2,3,10,rweewr,,0022-02-22,serwser,S
+1,3,11,wqeqw,,2222-02-22,erwerewrew,S
+3,3,12,5r43543,,0222-02-22,23423,S
