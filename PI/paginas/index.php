@@ -61,20 +61,20 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mt-4 mb-4 border-bottom">
                     <ul class="list-group list-group-flush col-12 col-md-auto mb-2 justify-content-center mb-md-0">  
                         <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Filtro</button>
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Classificar</button>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="?ordem=AZ">AZ</a></li>
-                                <li><a class="dropdown-item" href="?ordem=ZA">ZA</a></li>
+                                <li><a class="dropdown-item" href="?ordem=AZ">A-Z</a></li>
+                                <li><a class="dropdown-item" href="?ordem=ZA">Z-A</a></li>
                                 <li><a class="dropdown-item" href="?ordem=autor">Nome do autor</a></li>
                             </ul>
                         </div>
                         <?php 
-                            if (isset($_GET['ordem']))
-                                require('../php/filtro.php');
+                            if (isset($_GET['ordem'])) //filtro ordem
+                                require('../php/filtroOrdem.php');
                         ?>
                     </ul>
                     <form action="#" method="get" class="col-12 d-flex col-lg-auto mb-3 mb-lg-0 me-lg-3 mx-auto" role="search">
-                        <input type="search" name="pesquisa" class="form-control" placeholder="Search..." aria-label="Search">
+                        <input type="search" name="pesquisa" class="form-control" placeholder="Search..." aria-label="Search" autocomplete="off">
                         <button type="submit" id="btn" class="btn btn-outline-secondary ms-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -84,24 +84,28 @@
 
                     <ul class="list-group list-group-horizontal col-12 col-md-auto mb-2 justify-content-center mb-md-0 me-start">
                         <li class="list-group-item flex-fill"><a href="#" class="nav-link px-2 link-dark">Populares</a></li>
-                        <li class="list-group-item flex-fill"><a href="#" class="nav-link px-2 link-dark">Recentes</a></li>
+                        <li class="list-group-item flex-fill"><a href="?ordem=recentes" class="nav-link px-2 link-dark">Recentes</a></li>
                         <li class="list-group-item flex-fill"><a href="#" class="nav-link px-2 link-dark">Destaques</a></li>
                         <li class="list-group-item flex-fill">
-                            <form action="#">
-                                <select class="form-select px-2" name="" id="">
-                                    <option value="filtro" selected disabled>Categorias</option>
-                                    <option value="">3D</option>
-                                    <option value="">Programação</option>
-                                    <option value="">Pintura</option>
-                                </select>
-                            </form>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Categoria</button>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="?categoria=imagem">Imagem</a></li>
+                                    <li><a class="dropdown-item" href="?categoria=prototipos">Protótipos</a></li>
+                                    <li><a class="dropdown-item" href="?categoria=projetos">Projetos</a></li>
+                                </ul>
+                            </div>
                         </li>
+                        <?php 
+                            if (isset($_GET['categoria'])) //filtro categoria
+                                require('../php/filtroCategoria.php');
+                        ?>
                     </ul>
                 </div><!--  -->
 
                 <div class="row">
                     <?php 
-                        while($val = $stmt -> fetch(PDO::FETCH_ASSOC)) { //while do ativo/ pesquisa /filtro
+                        while($val = $stmt -> fetch(PDO::FETCH_ASSOC)) { //while do ativo/ pesquisa /filtros
                             ?> 
                                 <div class="col-4 d-flex mx-auto mt-5 text-center teste">
                                     <a href="?id=<?php echo $val['IdProjeto']?>" class="link" data-id="<?php echo $val['IdProjeto'] ?>">
@@ -116,14 +120,13 @@
                         } 
                     ?>
                     <div class="modal fade" id="staticBackdrop" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-dialog modal-dialog-centered modal-xl">
                             <div class="modal-content">
                                 <div class="modal-body">
                                                     
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                    <button type="button" class="btn btn-primary">OK</button>
                                 </div>
                             </div>
                         </div>

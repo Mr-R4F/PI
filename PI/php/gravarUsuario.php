@@ -19,8 +19,7 @@ if ($senha === $confimaSenha) {
                 history.back();
             </script>
         <?php
-    }
-    else {
+    } else {
         $senha = password_hash($senha, PASSWORD_DEFAULT);
         $stmt = $bd -> prepare('INSERT INTO usuario (nomeUsuario, email, senha) VALUES (:nomeUsuario, :email, :senha)');
 
@@ -36,8 +35,7 @@ if ($senha === $confimaSenha) {
                 </script> 
                 
             <?php
-        }
-        else {
+        } else {
             ?>
                 <script>
                     alert('Erro ao gravar');
@@ -46,8 +44,7 @@ if ($senha === $confimaSenha) {
             <?php
         }
     }
-}
-else {
+} else {
     ?> 
         <script>
             alert('Senhas não batem');

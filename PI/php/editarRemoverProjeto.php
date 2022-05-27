@@ -22,8 +22,7 @@ if (!empty($nomeProjeto) && !empty($data)) {
             if($tipo == 'image') {
                 $arquivoEnviado = '../imagens/' . $_FILES['img']['name'] . '_' . md5(rand(-9999999, 9999999) . microtime()) . '.' . $ext;
                 move_uploaded_file($_FILES['img']['tmp_name'], "$arquivoEnviado");
-            } 
-            else{
+            } else{
                 echo "Arquivo ignorado por não se tratar de um arquivo de imagem<br>";
             }
         }

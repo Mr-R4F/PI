@@ -63,24 +63,17 @@
                                             </div>
 
                                             <div class="col-7">
-                                                <label for="cod" class="form-label">Cod.:</label>
-                                                <input type="number" class="form-control" id="cod" name="cod">
-                                                <!--button type="submit" formaction="pesquisaCod.php" class="btn btn-outline-secondary mt-4">Pesquisar</button-->
-                                                <label for="nome" class="form-label mt-4">Nome do projeto</label>
-                                                <input type="text" class="form-control" id="nome" name="nome">
+                                                <label for="nome" class="form-label">Nome do projeto</label>
+                                                <input type="text" class="form-control" id="nome" name="nome" autocomplete="off">
 
                                                 <label for="autor" class="form-label mt-4">Autor</label>
                                                 <input type="text" class="form-control" id="autor" name="autor" value="<?php echo $_SESSION['nm']; ?>" disabled>
 
                                                 <label for="categoria" class="form-label mt-4">Categoria</label>
                                                 <select class="form-select" id="categoria" name="categoria">
-                                                    <option>Programação</option>
-                                                    <option>Jogos</option>
-                                                    <option>Livros</option>
-                                                    <option>3D</option>
-                                                    <option>Pinturas digitais</option>
-                                                    <option>Pinturas</option>
-                                                    <option>Imagens</option>
+                                                    <option value="1">Imagens</option>
+                                                    <option value="2">Protótipos</option>
+                                                    <option value="3">Projetos</option>
                                                 </select>
 
                                                 <div class="row">

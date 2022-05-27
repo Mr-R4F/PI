@@ -7,6 +7,7 @@ $nomeUsuario = $_SESSION['nm'];
 $nomeProjeto = $_POST['nome'];
 $data = $_POST['data'];
 $desc = $_POST['desc'];
+$categoria = $_POST['categoria']; //recebe valor do select.
 
 if (isset($_POST['ativo'])) {
     if ($_POST['ativo'] == "S")
@@ -49,7 +50,7 @@ if($_FILES['img']['error'] == 0 && $_FILES['img']['size'] > 0){
 #insere todo o conteudo
 $stmt = $bd -> prepare(
     "INSERT INTO projeto (IdProjeto, IdUsuario, IdCategoria, nomeProjeto, imagens, dataPostagem, descricao, ativo) 
-    SELECT ISNULL(MAX(IdProjeto), 0) + 1, {$val['IdUsuario']}, 1, '$nomeProjeto', :imagens, '$data', '$desc', '$ativo' 
+    SELECT ISNULL(MAX(IdProjeto), 0) + 1, {$val['IdUsuario']}, $categoria, '$nomeProjeto', :imagens, '$data', '$desc', '$ativo' 
     FROM projeto"
 );
 

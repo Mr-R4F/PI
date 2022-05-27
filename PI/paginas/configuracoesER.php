@@ -70,7 +70,7 @@
                                                     <input type="number" class="form-control" id="cod" name="cod" value="<?php echo $_GET['id']; ?>" disabled>
                                                                     
                                                     <label for="nome" class="form-label mt-4">Nome do projeto</label>
-                                                    <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $val['nomeProjeto']; ?>">
+                                                    <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $val['nomeProjeto']; ?>" autocomplete="off">
 
                                                     <label for="autor" class="form-label mt-4">Autor</label>
                                                     <input type="text" class="form-control" id="autor" name="autor" value="<?php echo ucfirst($_SESSION['nm']); ?>" disabled>

@@ -14,6 +14,6 @@ $(document).ready(function () {
                 $(".modal-body").html(resp); //coloca conteúdo no modal body.
             } 
         })
-        $(".modal").modal('show');
+        $(".modal").modal('show'); //mostra modal
     })
 });
