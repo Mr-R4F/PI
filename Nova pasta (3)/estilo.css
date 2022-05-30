@@ -15,3 +15,16 @@ button#btn {
     background: url("search.svg") no-repeat 12px;
     background-size: 20px;
 }
+
+.teste {
+    background-color: white;
+    background: linear-gradient(45deg, #4d77ff, #56bbf1);
+}
+
+.teste-2 {
+    background-color: white;
+}
+
+.img {
+    padding: 0px;
+}
