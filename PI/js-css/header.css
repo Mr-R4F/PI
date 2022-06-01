@@ -1,0 +1,53 @@
+/* Espaçamento do input do header/ main */
+
+input[type="search"] {
+    text-indent: 30px;
+}
+
+/* botão da pesquisa header */
+button#btn {
+    position: absolute;
+    position: top right;
+    box-sizing: content-box;
+    outline: none;
+    box-shadow: 0px 0px;
+    border: 0px;
+    text-decoration: none;
+    padding: 20px;
+    z-index: 5;
+    background: url("search.svg") no-repeat 12px;
+    background-size: 20px;
+}
+
+/* botão da pesquisa da main */
+button#btn2 { 
+    position: absolute;
+    position: top right;
+    box-sizing: content-box;
+    outline: none;
+    box-shadow: 0px 0px;
+    border: 0px;
+    text-decoration: none;
+    padding: 25px;
+    z-index: 5;
+    background: url("search.svg") no-repeat 12px;
+    background-size: 25px;
+}
+
+button#dropdownMenuButton1 {
+    box-sizing: content-box;
+    outline: none;
+    box-shadow: 0px 0px;
+    border: 0px;
+    text-decoration: none;
+}
+
+
+/* --- */
+a.navegacao:hover {
+    background-color: #0d6efd;
+}
+
+a.logout:hover {
+    background-color: #dc3545;
+}
