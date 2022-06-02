@@ -22,9 +22,9 @@ switch ($_GET['categoria']) {
 }
 
 $stmt = $bd -> query(
-    "SELECT nomeProjeto, nomeCategoria, imagens, nomeUsuario, IdProjeto FROM projeto
-    INNER JOIN categoria ON categoria.IdCategoria = projeto.IdCategoria
-    INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
-    WHERE projeto.ativo = 'S' AND categoria.nomeCategoria = '$categoria'
+    "SELECT nomeProjeto, nomeCategoria, imagens, nomeUsuario, IdProjeto FROM projeto_LL
+    INNER JOIN categoria_LL ON categoria_LL.IdCategoria = projeto_LL.IdCategoria
+    INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
+    WHERE projeto_LL.ativo = 'S' AND categoria_LL.nomeCategoria = '$categoria'
 ");
 $stmt -> execute();

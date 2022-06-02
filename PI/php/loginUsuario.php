@@ -6,7 +6,7 @@ require_once '../config/conexao.php';
 $email = trim($_POST['email'] ?? '');
 $senha = trim($_POST['senha'] ?? '');
 
-$stmt = $bd -> prepare('SELECT nomeUsuario, IdUsuario, email, senha FROM usuario WHERE email = :email');
+$stmt = $bd -> prepare('SELECT nomeUsuario, IdUsuario, email, senha FROM usuario_LL WHERE email = :email');
 $stmt -> bindParam(':email', $email);
 $stmt -> execute();
 $val = $stmt -> fetch(PDO::FETCH_ASSOC);

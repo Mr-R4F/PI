@@ -11,9 +11,9 @@ if (isset($_GET['pesquisa'])) {
 
     #Retorna o nº de linhas.
     $stmt = $bd -> query(
-        "SELECT COUNT(projeto.nomeProjeto) AS lin
-        FROM projeto  
-        INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
+        "SELECT COUNT(projeto_LL.nomeProjeto) AS lin
+        FROM projeto_LL  
+        INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
         WHERE nomeProjeto LIKE '%$pesquisa%'
     ");
     $stmt -> execute();
@@ -21,16 +21,16 @@ if (isset($_GET['pesquisa'])) {
 
     #Retorna o as respectivas consultas.
     $stmt = $bd -> prepare(
-        "SELECT projeto.nomeProjeto, projeto.imagens, projeto.IdUsuario, projeto.IdProjeto, usuario.nomeUsuario
-        FROM projeto
-        INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
-        WHERE nomeProjeto LIKE '%$pesquisa%' AND projeto.ativo = 'S'");
+        "SELECT projeto_LL.nomeProjeto, projeto_LL.imagens, projeto_LL.IdUsuario, projeto_LL.IdProjeto, usuario_LL.nomeUsuario
+        FROM projeto_LL
+        INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
+        WHERE nomeProjeto LIKE '%$pesquisa%' AND projeto_LL.ativo = 'S'");
     $stmt -> execute();
 }
 
-$stmt = $bd -> query("SELECT COUNT(*) AS qtd FROM projeto 
-INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
-WHERE projeto.ativo = 'S'");
+$stmt = $bd -> query("SELECT COUNT(*) AS qtd FROM projeto_LL 
+INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
+WHERE projeto_LL.ativo = 'S'");
 $stmt -> execute();
 $totalLin = $stmt -> fetch(PDO::FETCH_ASSOC);
 
@@ -61,12 +61,12 @@ if (isset($_GET['ordem'])) {
 
         default:
             break;
-}
+    }
 }
 
 $pesquisa = isset($_GET['pesquisa']) ? htmlspecialchars($_GET['pesquisa'], ENT_COMPAT, 'UTF-8') : "";
 
-$condicoes = [strlen($pesquisa) ? "nomeProjeto LIKE '%".str_replace(' ', '%',$pesquisa)."%'" : null, "projeto.ativo = 'S'"]; 
+$condicoes = [strlen($pesquisa) ? "nomeProjeto LIKE '%".str_replace(' ', '%',$pesquisa)."%'" : null, "projeto_LL.ativo = 'S'"]; 
 $condicoes = array_filter($condicoes);
 
 $where = empty($condicoes) ? '': 'WHERE '. implode(' AND ', $condicoes); 
@@ -74,7 +74,7 @@ $where = empty($condicoes) ? '': 'WHERE '. implode(' AND ', $condicoes);
 #Paginação
 $stmt = $bd -> query(
     "SELECT nomeProjeto, imagens, nomeUsuario, IdProjeto 
-    FROM projeto 
-    INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
+    FROM projeto_LL 
+    INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
     $where $order OFFSET $offset ROWS FETCH NEXT $qtdPagina ROWS ONLY");
 $stmt -> execute();

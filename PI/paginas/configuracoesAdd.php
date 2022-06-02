@@ -14,7 +14,7 @@
         <title>Configurações</title>
     </head>
     <body>
-        <header class="p-2 pb-1 col-lg-12 bg-dark">
+        <header class="header p-2 pb-1 col-lg-12 fixed-top">
             <nav class="navbar navbar-expand-md">
                 <div class="container">
                     <a href="#" class="navegacaonavbar-brand text-decoration-none text-white">

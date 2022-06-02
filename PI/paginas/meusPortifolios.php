@@ -16,12 +16,11 @@
         <title>Configurações</title>
     </head>
     <body>
-        <header class="p-2 pb-1 col-lg-12 bg-dark">
+        <header class="header p-2 pb-1 col-lg-12 fixed-top">
             <nav class="navbar navbar-expand-md">
                 <div class="container">
                     <a href="#" class="navegacaonavbar-brand text-decoration-none text-white">
                         <img src="" alt="LOGO" class="d-inline-block">
-                        <i><b>Projet.</b></i>io
                     </a>
 
                     <form action="index.php?pesquisa=<?php $pesquisa ?>" method="get" class="d-flex col-lg-auto mb-lg-0 me-lg-5 w-50 d-lg-block d-sm-none d-none">
@@ -92,7 +91,7 @@
             </div><!-- offcanvas  -->
         </header><!-- header -->
 
-        <header class="p-2 mb-5 bg-light border-bottom d-lg-none d-md-block d-block">
+        <header class="p-2 mb-5 bg-light border-bottom d-lg-none d-md-block d-block" >
             <form action="index.php?pesquisa=<?php $pesquisa ?>" method="get" class="d-flex col-lg-auto mb-lg-0 mx-auto w-50 d-lg-none d-md-block">
                 <div class="input-group">
                     <button type="submit" id="btn" class="btn btn-outline-light"></button>
@@ -101,7 +100,7 @@
             </form>
         </header>
 
-        <main>
+        <main style="margin-top: 6%;">
             <section class="container">
                 <p class="display-6 mt-5 col-6">Meus projetos</p>
 
@@ -115,17 +114,15 @@
                                             ?>
                                                 <div class="col-10 mx-auto mb-3">
                                                     <a href="../paginas/configuracoesER.php?id=<?php echo $val['IdProjeto']?>" class="link">
+                                                    <div class="card shadow-sm d-flex flex-wrap justify-content-center justify-content-lg-start">
                                                         <div class="row align-items-center">
-                                                            <div class='card shadow-sm d-flex flex-wrap justify-content-center justify-content-lg-start'>
-                                                                <div class='row align-items-center'>
-                                                                    <div class='col-4'>
-                                                                        <img src="<?php echo $val['imagens'];; ?>" alt="" width="100%" height="250px">
-                                                                    </div>
-                                                                    <div class='col-6 mx-auto'>
-                                                                        <p class='card-text px-2 mt-4 bg-light'><?php echo $val['nomeProjeto']; ?></p>
-                                                                        <p class='card-text px-2 mt-4 bg-light'><?php echo $val['dataPostagem']; ?></p>
-                                                                        <p class='card-text px-2 mt-4 bg-light'><?php echo $val['IdProjeto'] ?></p>
-                                                                    </div>
+                                                                <div class="col-4">
+                                                                    <img src="<?php echo $val['imagens']; ?>" height="250px" class="img-card">
+                                                                </div>
+                                                                <div class='col-6 mx-auto'>
+                                                                    <p class='card-text px-2 mt-4 bg-light'>Nome: <?php echo $val['nomeProjeto']; ?></p>
+                                                                    <p class='card-text px-2 mt-4 bg-light'>Data da Postagem: <?php echo $val['dataPostagem']; ?></p>
+                                                                    <p class='card-text px-2 mt-4 bg-light'>ID: <?php echo $val['IdProjeto'] ?></p>
                                                                 </div>
                                                             </div>
                                                         </div>

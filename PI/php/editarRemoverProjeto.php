@@ -35,7 +35,7 @@ if (!empty($nomeProjeto) && !empty($data)) {
         }
     
         $stmt = $bd -> prepare(
-            "UPDATE projeto SET nomeProjeto = '$nomeProjeto', dataPostagem = '$data', ativo = '$ativo', imagens = '$arquivoEnviado', descricao = '$desc'
+            "UPDATE projeto_LL SET nomeProjeto = '$nomeProjeto', dataPostagem = '$data', ativo = '$ativo', imagens = '$arquivoEnviado', descricao = '$desc'
             WHERE IdProjeto = {$_GET['id']};
         ");
     
@@ -52,7 +52,7 @@ if (!empty($nomeProjeto) && !empty($data)) {
 }
 
 if (isset($_POST['deleta'])) {
-    $stmt = $bd -> prepare("DELETE FROM projeto WHERE IdProjeto = {$_GET['id']}");
+    $stmt = $bd -> prepare("DELETE FROM projeto_LL WHERE IdProjeto = {$_GET['id']}");
     if ($stmt -> execute()) {
         header('location: ../paginas/meusPortifolios.php');
     }

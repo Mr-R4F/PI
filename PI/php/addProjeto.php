@@ -24,7 +24,7 @@ if (isset($_POST['ativo'])) {
 }
 
 #Achar o id do usuario.
-$stmt = $bd -> prepare("SELECT IdUsuario FROM usuario WHERE nomeUsuario = '$nomeUsuario'");
+$stmt = $bd -> prepare("SELECT IdUsuario FROM usuario_LL WHERE nomeUsuario = '$nomeUsuario'");
 $stmt -> execute();
 $val = $stmt -> fetch(PDO::FETCH_ASSOC);
 
@@ -49,16 +49,16 @@ if($_FILES['img']['error'] == 0 && $_FILES['img']['size'] > 0){
 
 #insere todo o conteudo
 $stmt = $bd -> prepare(
-    "INSERT INTO projeto (IdProjeto, IdUsuario, IdCategoria, nomeProjeto, imagens, dataPostagem, descricao, ativo) 
+    "INSERT INTO projeto_LL (IdProjeto, IdUsuario, IdCategoria, nomeProjeto, imagens, dataPostagem, descricao, ativo) 
     SELECT ISNULL(MAX(IdProjeto), 0) + 1, {$val['IdUsuario']}, $categoria, '$nomeProjeto', :imagens, '$data', '$desc', '$ativo' 
-    FROM projeto"
+    FROM projeto_LL"
 );
 
 $stmt -> bindParam(':imagens', $arquivoEnviado);
 $stmt -> execute();
 
 #mostra o ID do projeto
-$stmt = $bd -> query("SELECT (MAX(IdProjeto)) AS ID FROM projeto WHERE nomeProjeto = '$nomeProjeto'");
+$stmt = $bd -> query("SELECT (MAX(IdProjeto)) AS ID FROM projeto_LL WHERE nomeProjeto = '$nomeProjeto'");
 $stmt -> execute();
 $val = $stmt -> fetch(PDO::FETCH_ASSOC);
 $_SESSION['idProjeto'] = $val['ID'];

@@ -16,12 +16,11 @@
         <title>Index</title>
     </head>
     <body>
-        <header class="p-2 pb-1 col-lg-12 bg-dark fixed-top">
+        <header class="header p-2 pb-1 col-lg-12 bg-dark fixed-top">
             <nav class="navbar navbar-expand-md">
                 <div class="container">
-                    <a href="#" class="navegacaonavbar-brand text-decoration-none text-white">
+                    <a href="#" class="navegacao navbar-brand text-decoration-none text-white">
                         <img src="" alt="LOGO" class="d-inline-block">
-                        <i><b>Projet.</b></i>io
                     </a>
 
                     <form action="#" method="get" class="d-flex col-lg-auto mb-lg-0 me-lg-5 w-50 d-lg-block d-sm-none d-none">
@@ -268,11 +267,11 @@
                         <div class="modal fade" id="staticBackdrop" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-xl">
                                 <div class="modal-content">
+                                    <div class="modal-header shadow-sm">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
                                     <div class="modal-body">
                                                         
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +299,7 @@
                                         ?> 
                                             <li class="page-item">
                                                 <a class="page-link" href="#" aria-label="Next">
-                                                        <span aria-hidden="true">&raquo;</span>
+                                                    <span aria-hidden="true">&raquo;</span>
                                                 </a>
                                             </li>
                                         <?php

@@ -1,4 +1,7 @@
 /* Espaçamento do input do header/ main */
+.header {
+    background: linear-gradient(45deg, #4D77FF, #56BBF1);
+}
 
 input[type="search"] {
     text-indent: 30px;

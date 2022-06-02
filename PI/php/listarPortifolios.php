@@ -11,8 +11,8 @@ if (isset($_GET['pesquisa'])) {
     #Retorna o nº de linhas.
     $stmt = $bd -> query(
         "SELECT COUNT(projeto.nomeProjeto) AS lin
-        FROM projeto  
-        INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
+        FROM projeto_LL  
+        INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
         WHERE nomeProjeto LIKE '%$pesquisa%'
     ");
     $stmt -> execute();
@@ -20,27 +20,27 @@ if (isset($_GET['pesquisa'])) {
 
     #Retorna o as respectivas consultas.
     $stmt = $bd -> prepare(
-        "SELECT projeto.nomeProjeto, projeto.imagens, projeto.IdUsuario, projeto.IdProjeto, usuario.nomeUsuario
-        FROM projeto
-        INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
-        WHERE nomeProjeto LIKE '%$pesquisa%' AND projeto.ativo = 'S'");
+        "SELECT projeto_LL.nomeProjeto, projeto_LL.imagens, projeto_LL.IdUsuario, projeto_LL.IdProjeto, usuario_LL.nomeUsuario
+        FROM projeto_LL
+        INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
+        WHERE nomeProjeto LIKE '%$pesquisa%' AND projeto_LL.ativo = 'S'");
     $stmt -> execute();
 }
 
 #Retorna o número de linhas
 $stmt = $bd -> query(
-    "SELECT COUNT(projeto.IdProjeto) AS lin FROM projeto      
-    INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
-    WHERE usuario.nomeUsuario = '$nomeUsuario'
+    "SELECT COUNT(projeto_LL.IdProjeto) AS lin FROM projeto_LL      
+    INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
+    WHERE usuario_LL.nomeUsuario = '$nomeUsuario'
 ");
 $stmt -> execute();
 $lin = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 #Retorna as respectivas consultas abaixo.
 $stmt = $bd -> query(
-    "SELECT projeto.nomeProjeto, projeto.dataPostagem, projeto.imagens, projeto.IdProjeto
-    FROM projeto
-    INNER JOIN usuario ON usuario.IdUsuario = projeto.IdUsuario
-    WHERE usuario.nomeUsuario = '$nomeUsuario'
+    "SELECT projeto_LL.nomeProjeto, projeto_LL.dataPostagem, projeto_LL.imagens, projeto_LL.IdProjeto
+    FROM projeto_LL
+    INNER JOIN usuario_LL ON usuario_LL.IdUsuario = projeto_LL.IdUsuario
+    WHERE usuario_LL.nomeUsuario = '$nomeUsuario'
 ");
 $stmt -> execute();
