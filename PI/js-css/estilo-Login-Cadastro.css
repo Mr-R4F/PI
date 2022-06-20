@@ -6,7 +6,7 @@ body {
     background: linear-gradient(45deg, #4D77FF, #56BBF1);
 }
 
-button#cadastra, button#login {
+button#cadastra, button#login, button#prossiga {
     outline: none;
     background-color: transparent;
     border-color: white;
@@ -22,7 +22,7 @@ button#cadastra, button#login {
     transform: scale(100%);
 }
 
-button#cadastra:hover, button#login:hover {
+button#cadastra:hover, button#login:hover, button#prossiga:hover {
     transition: .4s;
     transform: scale(110%);
 }

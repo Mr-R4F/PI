@@ -13,7 +13,7 @@ if ($stmt -> execute()) {
             </svg>
         </div>
         <div class="modal-body text-center">
-            <p class="fs-4 fw-bolder p-0">Projeto removido com sucesso!</p>
+            <p class="fs-4 p-0">Projeto removido com sucesso!</p>
         </div>
 
         <script>

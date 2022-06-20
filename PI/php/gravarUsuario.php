@@ -1,33 +1,94 @@
 <?php
 
+
+/***  Para enviar Emails ***/
+/*
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../email/vendor/autoload.php';
+
+$mail = new PHPMailer(true);
+
+try {
+    //Config do servidor
+    $mail -> SMTPDebug = SMTP::DEBUG_SERVER;        
+    $mail -> SMTPOptions = array( //para funcionar o envio e corrigir o erro de servidor não encontrado
+        'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+        ));
+    $mail -> isSMTP(); //envia usando SMTP
+    $mail -> Host = 'smtp.gmail.com'; //Define o servidor SMTP a ser enviado
+    $mail -> SMTPAuth = true; // Ativa a autenticação SMTP
+    $mail -> Username = 'rtestconta@gmail.com'; //Nome SMTP 
+    $mail -> Password = 'qiwnzfmtycfspyjp'; //Senha SMTP
+    $mail -> SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  //Enable implicit TLS encryption
+    $mail -> Port = 465;
+
+    $mail -> setFrom('rtestconta@gmail.com', 'teste');
+    $mail -> addAddress('rtestconta@gmail.com', 'teste2');     //Add a recipient /destino
+
+    $mail -> isHTML(true);                                  //Set email format to HTML
+    $mail -> Subject = 'titulo';
+    $mail -> Body    = ''; //c/ html
+    $mail -> AltBody = 'This is the body in plain text for non-HTML mail clients'; //s/ html
+
+    $mail -> send(); //cria a msg e envia
+    
+    echo 'Email enviado com sucesso!';
+} catch (Exception $e) {
+    echo 'Houve um erro ao enviar o Email.';
+    ($mail -> ErrorInfo);
+}
+*/
+/*** --------- ***/
 require_once '../config/conexao.php';
 
-$nome = $_POST['nome'];
+$nome =  $_POST['nome'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 $confimaSenha = $_POST['confirmaSenha'];
 
-if(strlen($senha) && strlen($confimaSenha) >= 6) { #verifica se a senha tem 6 caracteres
-    if ($senha === $confimaSenha) { #verifica se são iguais
-        $stmt = $bd -> query("SELECT email FROM usuario_LL WHERE email = '$email'" );
-        $stmt -> execute([$email]);
-        $user = $stmt -> fetchAll();
-    
-        if ($user) { #se encontrar email igual
-            ?>
-                 <div class="modal-header shadow bg-warning">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="white" class="bi bi-exclamation-octagon mx-auto" viewBox="0 0 16 16">
-                        <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                    </svg>
-                </div>
-                <div class="modal-body text-center">
-                    <p class="fs-4 fw-bolder p-0">O email informado já existe</p>
-                </div>
-            <?php
-        } else {
+if (!preg_match("/^[a-zA-Z-' ]*$/", $nome)) { #verifica se o nome não tem esses caracteres
+    ?>
+        <div class="modal-header shadow bg-warning">
+            <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="white" class="bi bi-exclamation-octagon mx-auto" viewBox="0 0 16 16">
+                <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
+                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+            </svg>
+        </div>
+        <div class="modal-body text-center">
+            <p class="fs-4 fw-bolder p-0">O campo nome só permite letras e espaços</p>
+        </div>
+    <?php
+    exit();
+}
+
+$stmt = $bd -> prepare('SELECT email FROM usuario WHERE email = :email');
+$stmt -> bindParam(':email', $email);
+$stmt -> execute([$email]);
+$user = $stmt -> fetchAll();
+
+if (!empty($user)) { #se encontrar email igual
+    ?>
+        <div class="modal-header shadow bg-warning">
+            <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="white" class="bi bi-exclamation-octagon mx-auto" viewBox="0 0 16 16">
+                <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
+                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+            </svg>
+        </div>
+        <div class="modal-body text-center">
+            <p class="fs-4 fw-bolder p-0">O email informado já existe</p>
+        </div>
+    <?php
+} else { #se o email não existe, verifica as senhas
+    if ((strlen($senha) && strlen($confimaSenha) >= 6) && (strlen($senha) && strlen($confimaSenha) <= 8)) { #verifica se a senha tem entre 6 e 8 caracteres
+        if ($senha === $confimaSenha) { #verifica se são iguais
             $senha = password_hash($senha, PASSWORD_DEFAULT);
-            $stmt = $bd -> prepare("INSERT INTO usuario_LL (nomeUsuario, email, senha, ativo) VALUES (:nomeUsuario, :email, :senha, 'S')");
+            $stmt = $bd -> prepare("INSERT INTO usuario (nomeUsuario, email, senha, ativo) VALUES (:nomeUsuario, :email, :senha, 'S')");
             $stmt -> bindParam(':nomeUsuario', $nome);
             $stmt -> bindParam(':email', $email);
             $stmt -> bindParam(':senha', $senha);
@@ -41,7 +102,7 @@ if(strlen($senha) && strlen($confimaSenha) >= 6) { #verifica se a senha tem 6 ca
                         </svg>
                     </div>
                     <div class="modal-body text-center">
-                        <p class="fs-4 fw-bolder p-0">Cadastrado com sucesso!</p>
+                        <p class="fs-4 p-0">Cadastrado com sucesso!</p>
                     </div>
                     <script>
                         setTimeout(() => {
@@ -58,7 +119,7 @@ if(strlen($senha) && strlen($confimaSenha) >= 6) { #verifica se a senha tem 6 ca
                         </svg>
                     </div>
                     <div class="modal-body text-center">
-                        <p class="fs-4 fw-bolder p-0">Falha ao cadastrar.</p>
+                        <p class="fs-4 p-0">Falha ao cadastrar.</p>
                     </div>
                     <script>
                         setTimeout(() => {
@@ -67,8 +128,20 @@ if(strlen($senha) && strlen($confimaSenha) >= 6) { #verifica se a senha tem 6 ca
                     </script>
                 <?php
             }
+        } else { #Se a senha for incorreta
+            ?> 
+                <div class="modal-header shadow bg-warning">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="white" class="bi bi-exclamation-octagon mx-auto" viewBox="0 0 16 16">
+                        <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
+                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="fs-4 p-0">As senhas não correspondem.</p>
+                </div>
+            <?php
         }
-    } else { #Se senha for incorreta
+    } else { #Se a senha não tiver de 6 a 8 carac.
         ?> 
             <div class="modal-header shadow bg-warning">
                 <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="white" class="bi bi-exclamation-octagon mx-auto" viewBox="0 0 16 16">
@@ -77,20 +150,8 @@ if(strlen($senha) && strlen($confimaSenha) >= 6) { #verifica se a senha tem 6 ca
                 </svg>
             </div>
             <div class="modal-body text-center">
-                <p class="fs-4 fw-bolder p-0">As senhas não correspondem.</p>
+                <p class="fs-4 p-0">A senha deve possuír entre 6 e 8 caracteres.</p>
             </div>
         <?php
     }
-} else {
-    ?> 
-        <div class="modal-header shadow bg-warning">
-            <svg xmlns="http://www.w3.org/2000/svg" width="66" height="66" fill="white" class="bi bi-exclamation-octagon mx-auto" viewBox="0 0 16 16">
-                <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
-                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-            </svg>
-        </div>
-        <div class="modal-body text-center">
-            <p class="fs-4 fw-bolder p-0">A senha deve possuír no mínimo 6 caracteres.</p>
-        </div>
-    <?php
 }
